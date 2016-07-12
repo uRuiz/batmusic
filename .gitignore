@@ -1,0 +1,5 @@
+# Configuración node
+/node_modules
+
+# Ignoramos la carpeta dist
+/dist
