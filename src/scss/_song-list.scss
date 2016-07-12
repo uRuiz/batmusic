@@ -1,9 +1,45 @@
 // Variables
 
-
 //Styles
-.song-list {	
-	.song {
-		background: red;		
+.song-list {
+
+	@include if-is-tablet{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.song {	
+		@extend .clearfix;
+		border-bottom: 1px solid $color-grey;
+
+		@include if-is-tablet {
+			box-sizing: border-box;
+			width: 20%; // calc(20% - 20px);
+			text-align: center;
+			padding: 10px;
+		}
+
+		.cover{
+			width: 60px;
+			float: left;
+			margin-right: 10px;
+
+			@include if-is-tablet {
+				width: 100%;
+				margin: 10px;
+			}
+		}
+		.artist{
+			margin-top: 15px;
+			font-weight: bold;
+		}
+		.artist, .title{
+			display: block;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			height: 16px;
+			padding-right: 20px;
+		}	
 	}
 }

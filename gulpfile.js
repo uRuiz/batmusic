@@ -5,7 +5,7 @@ var notify = require('gulp-notify');
 var browserSync = require('browser-sync').create();
 
 // Definimos tarea por defecto
-gulp.task("default", function(){
+gulp.task("default", ["compile-sass"], function(){
 
 	//Iniciar BrowserSync
 	browserSync.init({

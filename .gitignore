@@ -3,3 +3,5 @@
 
 # Ignoramos la carpeta dist
 /dist
+
+package.json
