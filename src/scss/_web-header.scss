@@ -6,6 +6,7 @@ $web-header-color: $color-white;
 .web-header {
 	top: 0px;
 	left: 0px;
+	z-index: 99;
 	position: fixed;
 	width: 100%;
 	padding: 15px 0px;

@@ -13,7 +13,29 @@ img, embed, object, video {
 
 // Forms
 form {
+	top: 0px; left:0px;
+	background: $color-white;
+	width: calc(100% - 20px);
+	position: absolute;
 	padding: 10px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	@include if-is-tablet {
+		height: auto;
+		position: relative;
+		flex-direction: row;
+		flex-wrap: wrap;
+		div {
+			width: calc(50% - 10px);
+			margin: auto 5px;
+		}
+		button {
+			width: 20%;
+		}
+
+	}
 }
 
 label, input, button {
