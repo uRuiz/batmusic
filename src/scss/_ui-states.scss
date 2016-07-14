@@ -17,8 +17,10 @@ body {
 	}
 	
 	// Muestra el listado de canciones
-	&.songs-list-shown .song-list{
-		display: block;
+	&.songs-list-shown {
+		.song-list{
+			display: block;
+		}
 		@include if-is-tablet {
 			display: flex;			
 		}
