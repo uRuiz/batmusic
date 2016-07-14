@@ -1,3 +1,3 @@
 var $ = require('jquery');
 
-console.log ("Hello JavaScript!");
+console.log ("Hello Form!");
