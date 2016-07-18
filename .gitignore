@@ -4,4 +4,5 @@
 # Ignoramos la carpeta dist
 /dist
 /db
+/__MACOSX
 package.json
