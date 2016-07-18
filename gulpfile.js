@@ -15,7 +15,8 @@ gulp.task("default", ["concat-js","compile-sass"], function(){
 
 	//Iniciar BrowserSync
 	browserSync.init({
-		server: "./",  // levanta un servidor web en la carperta actual
+		//server: "./",  // levanta un servidor web en la carperta actual
+		proxy: "127.0.0.1:8000", // Actua como proxy enviando las peticiones a sparrest
 		browser: "google chrome"
 	});
 

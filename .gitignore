@@ -3,5 +3,5 @@
 
 # Ignoramos la carpeta dist
 /dist
-
+/db
 package.json
