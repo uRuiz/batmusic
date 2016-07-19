@@ -5,4 +5,5 @@
 /dist
 /db
 /__MACOSX
+/uploads
 package.json

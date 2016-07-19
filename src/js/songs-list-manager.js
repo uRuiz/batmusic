@@ -3,8 +3,8 @@ var apiClient = require('./api-client');
 var utils = require("./utils");
 
 module.exports = {
-    load: function(){
 
+    load: function(){
         apiClient.list(function(response) {
             $('.songs-list').html(''); // vaciamos la lista
             for (var i in response) {
@@ -14,7 +14,7 @@ module.exports = {
                 if (cover_url == "") {
                     cover_url = 'src/img/disc-placeholder.jpg';
                 }
-                var id =song.id || "";
+                var id = song.id || "";
                 var artist = song.artist || "";
                 var title = song.title || "";
 
@@ -30,4 +30,5 @@ module.exports = {
                 console.error("ERROR", response);
         });
     }
+
 }
