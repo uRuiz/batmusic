@@ -1,6 +1,21 @@
 var $ = require('jquery');
+var apiClient = require('./api-client');
 var songsListManager = require('./songs-list-manager');
 
+var newSongFormButton = $('.new-song-form button');
+
+function setLoading() {
+    // antes de enviar la petición
+    $(inputs).attr("disabled", true); // deshabilito todos los inputs
+    // Cambio el texto del botón y lo deshabilito
+    newSongFormButton.text("Saving song...").attr("disabled", true);        
+}
+
+function unsetLoading() {
+    $(inputs).attr("disabled", false); // habilito todos los inputs
+    // Cambio el texto del botón y lo habilito
+    newSongFormButton.text("Save Song").attr("disabled", false);
+}
 
 // al enviar formulario pulsando enter o haciendo click en el botón
 // enviamos una petición AJAX para almacenar la canción
@@ -25,30 +40,17 @@ $('.new-song-form').on("submit", function(){
         cover_url: $("#cover_url").val()
     };
 
-    // petición AJAX para guardar la información en el backend
-    $.ajax({
-        url: "/api/songs/",
-        method: "post",
-        data: song,
-        beforeSend: function(){ // antes de enviar la petición
-            $(inputs).attr("disabled", true); // deshabilito todos los inputs
-            // Cambio el texto del botón y lo deshabilito
-            $('.new-song-form button').text("Saving song...").attr("disabled", true);
-        },
-        success: function(response) {
+    setLoading();
+
+    apiClient.save(song, function(response) {
             $("form")[0].reset(); // borro todos los campos del formulario
             $("#artist").focus(); // pongo el foco en el campo artist
             songsListManager.load();
-        },
-        error: function() {
+        }, function() {
             console.error("ERROR", arguments);
-        },
-        complete: function(){
-            $(inputs).attr("disabled", false); // habilito todos los inputs
-            // Cambio el texto del botón y lo habilito
-            $('.new-song-form button').text("Save Song").attr("disabled", false);
-        }
-    });
+            unsetLoading();
+        });
+    // petición AJAX para guardar la información en el backend
 
     return false; // == e.preventDefault();
 });
