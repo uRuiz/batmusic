@@ -22,10 +22,10 @@ body {
 	// Muestra el listado de canciones
 	&.songs-list-shown {
 		.songs-list{
-			display: block;			
+			display: block;	
 			@include if-is-tablet {
 			display: flex;			
-		}
+			}
 		}
 		
 	}

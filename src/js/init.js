@@ -1,4 +1,4 @@
-var songsList = require('./songs-list');
+var songsListManager = require('./songs-list-manager');
 
 // cargamos la lista de canciones
-songsList.load();
+songsListManager.load();

@@ -28,7 +28,8 @@
                 margin-bottom: 10px;
             }
         }
-        .favourite-button {
+        .delete-button {
+            cursor:pointer;
             float: right;
             margin: 20px 10px 0 0;
             @include if-is-tablet {
