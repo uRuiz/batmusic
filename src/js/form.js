@@ -67,3 +67,31 @@ $('.new-song-form').on("submit", function(){
 
     return false; // == e.preventDefault();
 });
+
+// Anulo el comportamiento por defecto del navegador en el drop
+$('body').on("drop dragover", function(event){
+    event.preventDefault();
+    return false;
+});
+
+
+// Manejamos el evento de cuando ponen el archivo encima
+$('.drop-zone').on("dragover dragleave", function(event){
+    event.preventDefault();
+    if (event.type == "dragover") {
+        $(this).addClass("drop-here");
+    } else {
+        $(this).removeClass("drop-here");    
+    }    
+    return false;
+});
+
+// Manejamos el evento de cuando sueltan el archivo
+$('.drop-zone').on("drop", function(event){
+    var files = event.originalEvent.dataTransfer.files;
+    if (files.length > 0 ) {
+        files[0];
+    }
+    event.preventDefault();
+    return false;
+});

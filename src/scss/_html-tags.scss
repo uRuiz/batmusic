@@ -76,3 +76,16 @@ button {
 *::selection {
     background: $color-ivory-ish;
 }
+
+// TODO: Mover este estilo a un partial a parte
+.drop-zone {
+    @extend input;
+    background-color: $color-grey;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    font-size: $font-size-small;
+    &.drop-here {
+        background-color: lighten($color-sirena, 20%);
+    }
+}
