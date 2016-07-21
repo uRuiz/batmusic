@@ -23,7 +23,7 @@ function unsetLoading(){
 $('.new-song-form').on("submit", function(){
 
     // Validación de inputs
-    var inputs = $(".new-song-form input");
+    var inputs = $(".new-song-form").find("input, .drop-zone");
     for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
         if (input.checkValidity() == false) {
@@ -35,14 +35,14 @@ $('.new-song-form').on("submit", function(){
 
     var audio_file_input = $("#audio_file")[0];
     var audio_file = null;
-    if (audio_file_input.files.length > 0) {
-        audio_file = audio_file_input.files[0];
+    if (audio_file_input.file != null) {
+        audio_file = audio_file_input.file;
     }
 
     var cover_file_input = $("#cover_file")[0];
     var cover_file = null;
-    if (cover_file_input.files.length > 0) {
-        cover_file = cover_file_input.files[0];
+    if (cover_file_input.file) {
+        cover_file = cover_file_input.file;
     }
 
     // cancion que quiero crear
@@ -84,14 +84,30 @@ $('.drop-zone').on("dragover dragleave", function(event){
         $(this).removeClass("drop-here");    
     }    
     return false;
-});
 
-// Manejamos el evento de cuando sueltan el archivo
-$('.drop-zone').on("drop", function(event){
+}).on("drop", function(event){ // Manejamos el evento de cuando sueltan el archivo
     var files = event.originalEvent.dataTransfer.files;
     if (files.length > 0 ) {
-        files[0];
+        var file = files[0];
+        console.log("Archivo seleccionado: ", files[0]);
+        $(this).text(file.name);
+        this.file = file; 
     }
     event.preventDefault();
     return false;
+
+}).each(function () {
+    var self = this;
+
+    this.file = null; // creo un atributo file en el div.drop-zone con valor nulo
+
+    this.validationMessage = "Invalid file type";
+
+    this.checkValidity = function() {
+        // si el atributo file no es null y el tipo de archivo coincide  con el 
+        // valor de la expresión regular del atributo filetype, es válido
+        var regexp = $(self).attr("filetype");
+        return self.file != null && self.file.type.match(regexp);
+    };
+
 });
